@@ -1,16 +1,25 @@
 {
   "name": "gerador-formulario",
-  "version": "1.0.2-SNAPSHOT",
+  "version": "1.0.0-SNAPSHOT",
+  "description": "Gerar um PDF de formulario.",
+  "homepage": "https://github.com/FabioLucenaRibas/formulario",
+  "author": {
+    "name": "Fábio Lucena Ribas",
+    "email": "fabio.luce@outlook.com"
+  },
   "license": "MIT",
-  "main": "main.js",
+  "main": "app/main.js",
   "scripts": {
+    "postinstall": "electron-builder install-app-deps",
     "ng": "ng",
-    "start-old": "ng serve",
-    "start-host": "ng serve --host=192.168.1.20 --disable-host-check",
+    "start": "ng serve",
+    "start:host": "ng serve --host=192.168.1.20 --disable-host-check",
+    "start:electron": "ng build --base-href ./ && electron .",
     "start-debug": "ng serve --open",
-    "start": "ng build --base-href ./ && electron .",
-    "build-win": "electron-builder build --win portable",
-    "build": "ng build",
+    "electron:build": "npm run build:prod && electron-builder build --publish=never",
+    "electron:serve-tsc": "tsc -p tsconfig.serve.json",
+    "build:prod": "npm run build -- -c production",
+    "build": "npm run electron:serve-tsc && ng build --base-href ./",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -47,6 +56,7 @@
     "@types/node": "^12.20.37",
     "codelyzer": "^6.0.0",
     "electron": "^16.0.5",
+    "electron-builder": "^22.14.5",
     "jasmine-core": "~3.6.0",
     "jasmine-spec-reporter": "~5.0.0",
     "karma": "~5.1.0",
@@ -57,7 +67,6 @@
     "protractor": "~7.0.0",
     "ts-node": "~8.3.0",
     "tslint": "~6.1.0",
-    "typescript": "~4.4.3",
-    "electron-builder": "^22.14.5"
+    "typescript": "~4.4.3"
   }
 }
