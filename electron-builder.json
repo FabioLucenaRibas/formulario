@@ -1,4 +1,5 @@
 {
+  "productName": "CIVPRO",
   "asar": false,
   "directories": {
     "output": "release/"
