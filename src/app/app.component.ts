@@ -115,7 +115,14 @@ export class AppComponent implements OnInit {
     console.log(this.formulario);
 
     var innerHTML = this.templateComponent.pdfTemplate.nativeElement.innerHTML;
-    var html = htmlToPdfmake(innerHTML);
+
+    var options = {
+      defaultStyles: {
+        table: {margin: [-5, 0, 0, 0]}
+      }
+    }
+
+    var html = htmlToPdfmake(innerHTML, options);
 
     var documentDefinition = {
       content: html,
@@ -127,9 +134,9 @@ export class AppComponent implements OnInit {
       pageOrientation: 'portrait',
 
       // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-      pageMargins: [30, 30, 30, 30],
+      pageMargins: [35, 30, 30, 25],
 
-      pageNumbers: [1],
+      pageNumbers: [1]
     };
 
     pdfMake.createPdf(documentDefinition).open();

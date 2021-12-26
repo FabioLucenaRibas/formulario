@@ -84,32 +84,40 @@
                 <td colspan="3">VALOR IMÓVEL: {{formulario.valorImovel | number:'1.2-2':'pt-BR' }}</td>
             </tr>
             <tr>
-                <td colspan="3" style="margin-bottom: 150px;">FORMA DE PAGAMENTO: {{formulario.formaPagamento}}</td>
+                <td colspan="3">
+                    <table>
+                        <tbody>
+                            <td style="border-left: none; border-right: none; border-bottom: none; border-top: none;">FORMA DE PAGAMENTO:</td>
+                            <td
+                                style="white-space: pre-wrap; border-left: none; border-right: none; border-bottom: none; border-top: none;">{{formulario.formaPagamento}}</td>
+                        </tbody>
+                    </table>
+                </td>
             </tr>
             <tr>
-                <td style="margin-top: 5px; border-right: undefined; border-bottom: undefined" colspan="2">DE ACORDO:
+                <td style="margin-top: 5px; border-right: none; border-bottom: none" colspan="2">DE ACORDO:
                 </td>
-                <td style="text-align: center; margin-top: 5px; border-left: undefined; border-bottom: undefined">DATA:
+                <td style="text-align: center; margin-top: 5px; border-left: none; border-bottom: none">DATA:
                     ____/____/____ </td>
             </tr>
             <tr>
                 <td colspan="1"
-                    style="margin-top: 25px; text-align: center; border-right: undefined; border-bottom: undefined; border-top: undefined;">
+                    style="margin-top: 25px; text-align: center; border-right: none; border-bottom: none; border-top: none;">
                     __________________________ </td>
                 <td colspan="1"
-                    style="margin-top: 25px; text-align: center; border-left: undefined; border-right: undefined; border-bottom: undefined; border-top: undefined;">
+                    style="margin-top: 25px; text-align: center; border-left: none; border-right: none; border-bottom: none; border-top: none;">
                     __________________________ </td>
                 <td colspan="1"
-                    style="margin-top: 25px; text-align: center; border-left: undefined; border-bottom: undefined; border-top: undefined;">
+                    style="margin-top: 25px; text-align: center; border-left: none; border-bottom: none; border-top: none;">
                     __________________________ </td>
             </tr>
             <tr>
-                <td colspan="1" style="text-align: center; border-right: undefined; border-top: undefined">ASS.
+                <td colspan="1" style="text-align: center; border-right: none; border-top: none">ASS.
                     COMPRADOR </td>
                 <td colspan="1"
-                    style="text-align: center; border-left: undefined; border-right: undefined; border-top: undefined">
+                    style="text-align: center; border-left: none; border-right: none; border-top: none">
                     ASS. COMPRADOR 2 </td>
-                <td colspan="1" style="text-align: center; border-left: undefined; border-top: undefined">CONSTRUTORA</td>
+                <td colspan="1" style="text-align: center; border-left: none; border-top: none">CONSTRUTORA</td>
             </tr>
         </table>
     </div>
