@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 import {
   ConfirmationService,
+  MenuItem,
   MessageService,
   PrimeNGConfig
 } from 'primeng/api';
@@ -22,7 +23,9 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
   encapsulation: ViewEncapsulation.None
 })
 export class AppComponent implements OnInit {
-  title = 'gerador-formulario';
+  title = 'CIVPRO';
+  items: MenuItem[];
+  estadoCivilOpcoes: any[];
   formulario = new Formulario();
 
   @ViewChild('pdfTemplate', { static: false }) templateComponent: TemplateComponent;
@@ -33,11 +36,56 @@ export class AppComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private messageService: MessageService,
     private primengConfig: PrimeNGConfig
-  ) { }
+  ) { 
+    this.estadoCivilOpcoes = [
+      { label: "Solteiro", value: "Solteiro" },
+      { label: "Casado", value: "Casado" },
+      { label: "Outros", value: "Outros" }
+    ];
+  }
 
   ngOnInit() {
     this.primengConfig.ripple = true;
     console.log(this.formulario);
+
+    this.items = [
+      {
+        id: "novo",
+        label: 'Novo',
+        icon: 'pi pi-fw pi-plus',
+        command: (event: Event) => { this.confirmaNovoFormulario(event) }
+      },
+      {
+        id: "carregar",
+        label: 'Carregar',
+        icon: 'pi pi-fw pi-upload',
+      },
+      {
+        id: "salvar",
+        label: 'Salvar',
+        icon: 'pi pi-fw pi-save',
+        command: (event: Event) => { this.baixarFormulario() }
+      },
+      {
+        id: "exportar",
+        label: 'Exportar',
+        icon: 'pi pi-fw pi-file-pdf',
+        target: "file",
+        command: (event: Event) => { this.exportar(event) }
+      }
+    ];
+  }
+
+  activeMenu(event) {
+    if (event.target.id === "carregar"){
+      let file = document.getElementById("file");
+      var clickEvent = new MouseEvent("click", {
+        "view": window,
+        "bubbles": true,
+        "cancelable": false
+      });
+      file.dispatchEvent(clickEvent);
+    }
   }
 
   gerarCliente2() {
@@ -57,15 +105,21 @@ export class AppComponent implements OnInit {
   confirmaNovoFormulario(event: Event) {
     this.confirmationService.confirm({
       target: event.target,
+      header: "Atenção",
       message: "Tem certeza de que deseja continuar? \nO formulário atual será descartado.",
       icon: "pi pi-exclamation-triangle",
-      rejectVisible: false,
+      rejectLabel: "Não",
+      rejectIcon: "pi pi-times",
       acceptLabel: "Sim",
+      acceptIcon: "pi pi-check",
+      defaultFocus: "reject",
+      acceptButtonStyleClass: "p-button-text p-button-secondary",
       accept: () => {
         this.formulario = new Formulario();
 
         this.messageService.add({
-          severity: "info",
+          severity: "success",
+          summary: "Sucesso",
           detail: "Um novo formulario foi gerado."
         });
       }
@@ -118,7 +172,7 @@ export class AppComponent implements OnInit {
 
     var options = {
       defaultStyles: {
-        table: {margin: [-5, 0, 0, 0]}
+        table: { margin: [-5, 0, 0, 0] }
       }
     }
 
@@ -145,10 +199,15 @@ export class AppComponent implements OnInit {
   confirmarExporta(event: Event) {
     this.confirmationService.confirm({
       target: event.target,
-      message: "Ainda possui campos obrigatórios não preenchidos. Deseja continuar?",
+      header: "Atenção",
+      message: "Ainda possui campos obrigatórios não preenchidos.\nDeseja continuar?",
       icon: "pi pi-exclamation-triangle",
-      rejectVisible: false,
+      rejectLabel: "Não",
+      rejectIcon: "pi pi-times",
       acceptLabel: "Sim",
+      acceptIcon: "pi pi-check",
+      defaultFocus: "reject",
+      acceptButtonStyleClass: "p-button-text p-button-secondary",
       accept: () => {
         this.gerarPdf();
       }

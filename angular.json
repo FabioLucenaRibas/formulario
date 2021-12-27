@@ -23,7 +23,8 @@
                 "src/assets"
               ],
               "styles": [
-                "node_modules/primeng/resources/themes/mdc-dark-indigo/theme.css",
+                "src/assets/layout/css/blue/layout-dark.css",
+                "src/assets/theme/blue/theme-dark.css",
                 "node_modules/primeng/resources/primeng.min.css",
                 "node_modules/primeicons/primeicons.css",
                 "node_modules/primeflex/primeflex.css",

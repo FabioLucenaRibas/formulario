@@ -18,3 +18,12 @@ p-calendar > span > input {
 .margin-button button {
     margin: 0.5rem;;
 }
+
+.p-dialog .p-dialog-footer button {
+    float: right;
+}
+
+.p-menubar-root-list li:last-child {
+    position: absolute;
+    right: 4.7em;
+  }

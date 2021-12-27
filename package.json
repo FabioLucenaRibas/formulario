@@ -1,6 +1,6 @@
 {
   "name": "gerador-formulario",
-  "version": "1.0.1-SNAPSHOT",
+  "version": "1.0.2-SNAPSHOT",
   "description": "Gerar um PDF de formulario.",
   "homepage": "https://github.com/FabioLucenaRibas/formulario",
   "author": {

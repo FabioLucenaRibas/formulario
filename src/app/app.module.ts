@@ -8,15 +8,18 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { DialogModule } from 'primeng/dialog';
-import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
 
+import {ConfirmDialogModule} from 'primeng/confirmdialog';
 import { ConfirmPopupModule } from "primeng/confirmpopup";
 import { ToastModule } from "primeng/toast";
 import { ConfirmationService, MessageService } from "primeng/api";
 
+import {SelectButtonModule} from 'primeng/selectbutton';
+import {MenubarModule} from 'primeng/menubar';
+import {TabViewModule} from 'primeng/tabview';
 import {CardModule} from 'primeng/card';
 import {AccordionModule} from 'primeng/accordion';
 import {InputTextModule} from 'primeng/inputtext';
@@ -54,15 +57,18 @@ const maskConfig: Partial<IConfig> = {
         TableModule,
         DialogModule,
         ToolbarModule,
-        ConfirmDialogModule,
         RatingModule,
         InputNumberModule,
         InputTextareaModule,
         DropdownModule,
-
+        
+        SelectButtonModule,
+        ConfirmDialogModule,
         ConfirmPopupModule,
         ToastModule,
         ButtonModule,
+        MenubarModule,
+        TabViewModule,
         CardModule,
         AccordionModule,
         InputTextModule,
