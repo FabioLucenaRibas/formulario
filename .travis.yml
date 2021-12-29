@@ -5,6 +5,7 @@ branches:
   only:
     - main
 before_script:
+  - npm install esbuild
   - npm install -g @angular/cli
 script:
   - npm install
