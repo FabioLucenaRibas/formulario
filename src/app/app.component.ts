@@ -1,20 +1,17 @@
 import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { TemplateComponent } from './template/template.component';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NgForm } from '@angular/forms';
 import {
   ConfirmationService,
   MenuItem,
   MessageService,
   PrimeNGConfig
 } from 'primeng/api';
-import { Cliente } from './model/cliente.model';
 import { Formulario } from './model/formulario.model';
-import htmlToPdfmake from 'html-to-pdfmake';
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-import { TemplateComponent } from './template/template.component';
+import { Cliente } from './model/cliente.model';
 import { Utils } from './utils/Utils';
-import { NgForm } from '@angular/forms';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+
 
 @Component({
   selector: 'app-root',
@@ -88,44 +85,6 @@ export class AppComponent implements OnInit {
     }
   }
 
-  gerarCliente2() {
-    let clientes = this.formulario.dadosClientes;
-
-    let primeiroCliente = clientes[0];
-    delete primeiroCliente.dados.estadocivilespecifico
-    delete primeiroCliente.dados.regimeComunhao
-
-    if (clientes.length > 1) {
-      clientes.splice(2, 1);
-    } else {
-      clientes.push(new Cliente())
-    }
-  }
-
-  confirmaNovoFormulario(event: Event) {
-    this.confirmationService.confirm({
-      target: event.target,
-      header: "Atenção",
-      message: "Tem certeza de que deseja continuar? \nO formulário atual será descartado.",
-      icon: "pi pi-exclamation-triangle",
-      rejectLabel: "Não",
-      rejectIcon: "pi pi-times",
-      acceptLabel: "Sim",
-      acceptIcon: "pi pi-check",
-      defaultFocus: "reject",
-      acceptButtonStyleClass: "p-button-text p-button-secondary",
-      accept: () => {
-        this.formulario = new Formulario();
-
-        this.messageService.add({
-          severity: "success",
-          summary: "Sucesso",
-          detail: "Um novo formulario foi gerado."
-        });
-      }
-    });
-  }
-
   carregarFormulario(files: FileList) {
     let fileReader = new FileReader();
     fileReader.onload = (e) => {
@@ -167,33 +126,31 @@ export class AppComponent implements OnInit {
 
   gerarPdf() {
     console.log(this.formulario);
+    this.templateComponent.gerarPdf();
+  }
 
-    var innerHTML = this.templateComponent.pdfTemplate.nativeElement.innerHTML;
+  confirmaNovoFormulario(event: Event) {
+    this.confirmationService.confirm({
+      target: event.target,
+      header: "Atenção",
+      message: "Tem certeza de que deseja continuar? \nO formulário atual será descartado.",
+      icon: "pi pi-exclamation-triangle",
+      rejectLabel: "Não",
+      rejectIcon: "pi pi-times",
+      acceptLabel: "Sim",
+      acceptIcon: "pi pi-check",
+      defaultFocus: "reject",
+      acceptButtonStyleClass: "p-button-text p-button-secondary",
+      accept: () => {
+        this.formulario = new Formulario();
 
-    var options = {
-      defaultStyles: {
-        table: { margin: [-5, 0, 0, 0] }
+        this.messageService.add({
+          severity: "success",
+          summary: "Sucesso",
+          detail: "Um novo formulario foi gerado."
+        });
       }
-    }
-
-    var html = htmlToPdfmake(innerHTML, options);
-
-    var documentDefinition = {
-      content: html,
-
-      // a string or { width: number, height: number }
-      pageSize: 'B4',
-
-      // by default we use portrait, you can change it to landscape if you wish
-      pageOrientation: 'portrait',
-
-      // [left, top, right, bottom] or [horizontal, vertical] or just a number for equal margins
-      pageMargins: [35, 30, 30, 25],
-
-      pageNumbers: [1]
-    };
-
-    pdfMake.createPdf(documentDefinition).open();
+    });
   }
 
   confirmarExporta(event: Event) {
@@ -220,6 +177,20 @@ export class AppComponent implements OnInit {
       this.formulario.imagem = "data:image/png;base64, " + btoa(fileReader.result.toString());
     }
     fileReader.readAsBinaryString(files.item(0));
+  }
+
+  gerarCliente2() {
+    let clientes = this.formulario.dadosClientes;
+
+    let primeiroCliente = clientes[0];
+    delete primeiroCliente.dados.estadocivilespecifico
+    delete primeiroCliente.dados.regimeComunhao
+
+    if (clientes.length > 1) {
+      clientes.splice(2, 1);
+    } else {
+      clientes.push(new Cliente())
+    }
   }
 
   validarCpf(event: any) {
