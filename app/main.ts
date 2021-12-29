@@ -1,4 +1,4 @@
-import { app, BrowserWindow, screen } from 'electron';
+import { app, BrowserWindow, screen, dialog } from 'electron';
 import * as path from 'path';
 import * as fs from 'fs';
 import * as url from 'url';
@@ -55,6 +55,19 @@ function createWindow(): BrowserWindow {
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     win = null;
+  });
+
+  win.on('close', function(e) {
+    const choice = dialog.showMessageBoxSync(this,
+      {
+        type: 'question',
+        buttons: ['Cancelar', 'Sair'],
+        title: 'Atenção',
+        message: 'Você tem certeza que deseja sair?'
+      });
+    if (choice === 0) {
+      e.preventDefault();
+    }
   });
 
   return win;
