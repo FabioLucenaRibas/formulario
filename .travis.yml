@@ -1,11 +1,15 @@
 language: node_js
+
 node_js:
-  - "11.0"
+   - node
+
 branches:
-  only:
-    - master
+   only:
+      - main
+
 before_script:
-  - npm install -g @angular/cli
+   - npm install -g --silent @angular/cli
+   - npm install -g 
+
 script:
-  - npm install
-  - npm run build
+   - ng build --prod
