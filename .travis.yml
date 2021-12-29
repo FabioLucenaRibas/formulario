@@ -1,15 +1,11 @@
 language: node_js
 node_js:
-  - "9"
-dist: trusty
-sudo: required
-
+  - "11.0"
 branches:
   only:
-  - main
-
+    - master
 before_script:
   - npm install -g @angular/cli
-
 script:
-  - ng build --prod --base-href https://github.com/FabioLucenaRibas/formulario
+  - npm install
+  - npm run build
