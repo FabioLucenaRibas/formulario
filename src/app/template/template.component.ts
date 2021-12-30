@@ -18,21 +18,21 @@ export class TemplateComponent {
   @ViewChild('pdfTemplate') pdfTemplate: ElementRef;
 
   constructor(
-    public _DomSanitizer: DomSanitizer,
+    public domSanitizer: DomSanitizer,
   ) { }
 
   gerarPdf(){
-    var innerHTML = this.pdfTemplate.nativeElement.innerHTML;
+    const innerHTML = this.pdfTemplate.nativeElement.innerHTML;
 
-    var options = {
+    const options = {
       defaultStyles: {
         table: { margin: [-5, 0, 0, 0] }
       }
-    }
+    };
 
-    var html = htmlToPdfmake(innerHTML, options);
+    const html = htmlToPdfmake(innerHTML, options);
 
-    var documentDefinition = {
+    const documentDefinition = {
       content: html,
 
       // a string or { width: number, height: number }

@@ -1,4 +1,4 @@
 export class ReferenciaPessoal {
-    nome: string
-    telefone: string
+    nome: string;
+    telefone: string;
 }

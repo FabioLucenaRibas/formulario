@@ -12,26 +12,26 @@ import { DropdownModule } from 'primeng/dropdown';
 import { RatingModule } from 'primeng/rating';
 import { ToolbarModule } from 'primeng/toolbar';
 
-import {ConfirmDialogModule} from 'primeng/confirmdialog';
-import { ConfirmPopupModule } from "primeng/confirmpopup";
-import { ToastModule } from "primeng/toast";
-import { ConfirmationService, MessageService } from "primeng/api";
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { ConfirmPopupModule } from 'primeng/confirmpopup';
+import { ToastModule } from 'primeng/toast';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
-import {SelectButtonModule} from 'primeng/selectbutton';
-import {MenubarModule} from 'primeng/menubar';
-import {TabViewModule} from 'primeng/tabview';
-import {CardModule} from 'primeng/card';
-import {AccordionModule} from 'primeng/accordion';
-import {InputTextModule} from 'primeng/inputtext';
-import {ImageModule} from 'primeng/image';
-import {FileUploadModule} from 'primeng/fileupload';
-import {HttpClientModule} from '@angular/common/http';
-import {RadioButtonModule} from 'primeng/radiobutton';
-import {InputMaskModule} from 'primeng/inputmask';
-import {CalendarModule} from 'primeng/calendar';
-import { NgxMaskModule, IConfig } from 'ngx-mask'
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
+import { SelectButtonModule } from 'primeng/selectbutton';
+import { MenubarModule } from 'primeng/menubar';
+import { TabViewModule } from 'primeng/tabview';
+import { CardModule } from 'primeng/card';
+import { AccordionModule } from 'primeng/accordion';
+import { InputTextModule } from 'primeng/inputtext';
+import { ImageModule } from 'primeng/image';
+import { FileUploadModule } from 'primeng/fileupload';
+import { HttpClientModule } from '@angular/common/http';
+import { RadioButtonModule } from 'primeng/radiobutton';
+import { InputMaskModule } from 'primeng/inputmask';
+import { CalendarModule } from 'primeng/calendar';
+import { NgxMaskModule, IConfig } from 'ngx-mask';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 import { AppComponent } from './app.component';
 import { TemplateComponent } from './template/template.component';
@@ -41,9 +41,9 @@ import localePt from '@angular/common/locales/pt';
 
 const maskConfig: Partial<IConfig> = {
     validation: true,
-  };
+};
 
-  registerLocaleData(localePt);
+registerLocaleData(localePt);
 
 @NgModule({
     declarations: [
@@ -61,7 +61,7 @@ const maskConfig: Partial<IConfig> = {
         InputNumberModule,
         InputTextareaModule,
         DropdownModule,
-        
+
         SelectButtonModule,
         ConfirmDialogModule,
         ConfirmPopupModule,
@@ -82,7 +82,7 @@ const maskConfig: Partial<IConfig> = {
         MessageModule,
         NgxMaskModule.forRoot(maskConfig),
     ],
-    providers: [ConfirmationService, MessageService, { provide: LOCALE_ID, useValue: 'pt-BR' } ],
+    providers: [ConfirmationService, MessageService, { provide: LOCALE_ID, useValue: 'pt-BR' }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

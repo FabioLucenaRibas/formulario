@@ -1,7 +1,7 @@
 export class Utils {
 
-    public static validateCPF(CPF: string): boolean {
-        const cpf = CPF.replace(/[^\d]+/g, '');
+    public static validateCPF(value: string): boolean {
+        const cpf = value.replace(/[^\d]+/g, '');
         let i = 0;
         let add = 0;
         let rev = 0;
@@ -21,37 +21,37 @@ export class Utils {
           cpf === '99999999999') {
           return false;
         }
-    
+
         for (i = 0; i < 9; i ++) {
           add += +cpf.charAt(i) * (10 - i);
         }
-    
+
         rev = 11 - (add % 11);
-    
+
         if (rev === 10 || rev === 11) {
           rev = 0;
         }
-    
+
         if (rev !== +cpf.charAt(9)) {
           return false;
         }
-    
+
         add = 0;
-    
+
         for (i = 0; i < 10; i ++) {
           add += +cpf.charAt(i) * (11 - i);
         }
-    
+
         rev = 11 - (add % 11);
-    
+
         if (rev === 10 || rev === 11) {
           rev = 0;
         }
-    
+
         if (rev !== +cpf.charAt(10)) {
           return false;
         }
-    
+
         return true;
       }
 

@@ -1,4 +1,4 @@
-import { ReferenciaPessoal } from ".";
+import { ReferenciaPessoal } from '.';
 
 describe('ReferenciaPessoal', () => {
   it('should create an instance', () => {
